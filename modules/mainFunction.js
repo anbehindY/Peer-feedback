@@ -35,11 +35,11 @@ class TaskList {
     this.tasksContainer.innerHTML = task.join('');
   };
 
-  saveTasks() {
+  saveTasks = () => {
     localStorage.setItem(this.taskKey, JSON.stringify(this.tasksInfo));
   }
 
-  add() {
+  add = () => {
     if (this.addText.value) {
       const taskInfo = {
         description: this.addText.value,
@@ -55,7 +55,7 @@ class TaskList {
     }
   }
 
-  remove() {
+  remove = () => {
     this.tasksContainer.addEventListener('click', (e) => {
       if (e.target.classList.contains('fa-trash-can')) {
         const id = parseInt(e.target.getAttribute('data-index'), 10);
@@ -71,7 +71,7 @@ class TaskList {
     });
   }
 
-  edit() {
+  edit = () => {
     this.tasksContainer.addEventListener('click', (e) => {
       const taskItem = e.target.closest('.taskItems');
       if (taskItem) {
@@ -91,14 +91,14 @@ class TaskList {
     });
   }
 
-  deleteCompletedTasks() {
+  deleteCompletedTasks = () => {
     this.tasksInfo = this.tasksInfo.filter((task) => !task.completed);
     this.display();
     checkStatus(this.tasksInfo, this.saveTasks.bind(this));
     this.saveTasks();
   }
 
-  render() {
+  render = () => {
     this.add();
     this.remove();
     this.display();
